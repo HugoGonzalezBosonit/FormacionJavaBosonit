@@ -31,7 +31,7 @@ public class Main {
 	@Bean
 	CommandLineRunner thirdExec ()
 	{
-		return p -> System.out.println("Soy la tercera Class");
+		return p -> System.out.println(firstExec() + " " + secondExec());
 	}
 
 }
