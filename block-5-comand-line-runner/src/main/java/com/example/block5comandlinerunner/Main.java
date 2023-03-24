@@ -16,16 +16,18 @@ public class Main {
 	}
 
 	@Bean
-	CommandLineRunner firstExec ()
+	String firstExec ()
 	{
-		return p ->	System.out.println("Hola desde InitialClass");
+		System.out.println("Hola desde InitialClass");
+		return "Hola desde InitialClass";
 	}
 
 
 	@Bean
-	CommandLineRunner secondExec ()
+	String secondExec ()
 	{
-		return p ->	System.out.println("Hola desde SecundaryClass");
+		System.out.println("Hola desde SecundaryClass");
+		return "Hola desde SecundaryClass";
 	}
 
 	@Bean
