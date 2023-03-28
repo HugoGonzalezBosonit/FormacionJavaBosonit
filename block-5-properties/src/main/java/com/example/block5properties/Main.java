@@ -8,16 +8,18 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Main {
+	// La única diferencia entre application.properties y application.yml a nivel de String / int es la nomenclatura en el propio fichero
+	// application.properties usa un = entre el nombre y el valor y application.yml usa un : entre el nombre y el valor determinado
 
 	// Determino una variable local a los valores de las líneas asignadas en aplication.properties
 	// Tambi,en asigno un valor por defecto en caso de que de algún tipo de error
 	@Value("${greeting:greeting no tiene valor}")
 	private String greeting;
 	@Value("${my.number:my.number no tiene valor}")
-	private static int num;
+	private int num;
 
 	// private static int num;
-	// Al poner static no es capaz de asignarle el valor que se encuentra en application.properties
+	// Al poner static no es capaz de asignarle el valor que se encuentra en application.yml
 	@Value("${new.propertie:new.propertie no tiene valor}")
 	private String nprop;
 
