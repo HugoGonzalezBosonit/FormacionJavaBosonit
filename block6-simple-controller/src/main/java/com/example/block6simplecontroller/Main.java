@@ -16,11 +16,12 @@ public class Main {
 		return saludo;
 	}
 // URL ---> http://localhost:8080/useradd
-	@PostMapping(value = "/useradd")
+	@PostMapping("/useradd")
 	public Person addUser(@RequestBody Person person) {
 		person.setAge(person.getAge() + 1);
 		return person;
 	}
+	@GetMapping("/aaa")
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 	}
