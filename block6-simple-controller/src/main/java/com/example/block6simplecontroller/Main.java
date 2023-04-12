@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @SpringBootApplication
 public class Main {
+// URL ---> http://localhost:8080/useradd
+	@PostMapping("/useradd")
+	public Person addUser(@RequestBody Person person) {
+		person.setAge(person.getAge() + 1);
+		return person;
+	}
 
 // URL ---> http://localhost:8080/user/[Whatever you willing to put]
 	@GetMapping("/user/{name}")
@@ -15,15 +21,7 @@ public class Main {
 		String saludo = "Hola " +name;
 		return saludo;
 	}
-// URL ---> http://localhost:8080/useradd
-	@PostMapping("/useradd")
-	public Person addUser(@RequestBody Person person) {
-		person.setAge(person.getAge() + 1);
-		return person;
-	}
-	@GetMapping("/aaa")
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 	}
-
 }
