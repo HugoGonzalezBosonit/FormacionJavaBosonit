@@ -4,6 +4,7 @@ import com.bosonit.springdata.application.StudentServiceImpl;
 import com.bosonit.springdata.controller.dto.StudentInputDto;
 import com.bosonit.springdata.controller.dto.StudentOutputDto;
 import com.bosonit.springdata.domain.Student;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class Controller {
     StudentServiceImpl studentService;
 
     @PostMapping
-    public ResponseEntity<StudentOutputDto> addStudent (@RequestBody StudentInputDto student) {
+    public ResponseEntity<StudentOutputDto> addStudent (@Valid @RequestBody StudentInputDto student) {
         URI location = URI.create("/student");
         return ResponseEntity.created(location).body(studentService.addStudent(student));
     }
@@ -46,7 +47,7 @@ public class Controller {
 
     @GetMapping
     public Iterable<StudentOutputDto> getAllStudents (@RequestParam(defaultValue = "0", required = false) int pageNymber,
-                                                      @RequestParam(defaultValue = "4", required = false) int pageSize) {
+                                                      @RequestParam(defaultValue = "10", required = false) int pageSize) {
         return studentService.getAlStudents(pageNymber, pageSize);
     }
 
