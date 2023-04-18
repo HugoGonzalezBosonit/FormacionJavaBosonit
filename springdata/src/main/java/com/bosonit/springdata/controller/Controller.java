@@ -44,9 +44,9 @@ public class Controller {
     }
 
     @GetMapping
-    public Iterable<StudentOutputDto> getAllStudents (@RequestParam(defaultValue = "0", required = false) int pageNymber,
+    public Iterable<StudentOutputDto> getAllStudents (@RequestParam(defaultValue = "0", required = false) int pageNumber,
                                                       @RequestParam(defaultValue = "10", required = false) int pageSize) {
-        return studentService.getAlStudents(pageNymber, pageSize);
+        return studentService.getAlStudents(pageNumber, pageSize);
     }
 
     @PutMapping

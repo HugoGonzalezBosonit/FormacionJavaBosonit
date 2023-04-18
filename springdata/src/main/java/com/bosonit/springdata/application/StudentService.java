@@ -2,7 +2,6 @@ package com.bosonit.springdata.application;
 
 import com.bosonit.springdata.controller.dto.StudentInputDto;
 import com.bosonit.springdata.controller.dto.StudentOutputDto;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
