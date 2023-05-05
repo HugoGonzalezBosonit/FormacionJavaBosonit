@@ -25,7 +25,7 @@ public class CabeceraFra {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
-    @OneToMany(mappedBy = "cabeceraFra")
+    @OneToMany(mappedBy = "cabeceraFra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LineaFra> lineas;
 
     public CabeceraFra(int importeFra, Cliente cliente) {

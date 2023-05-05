@@ -1,11 +1,15 @@
 package com.bosonit;
 
+import com.bosonit.cabecera.controller.dto.CabeceraFraInputDto;
 import com.bosonit.cabecera.domain.CabeceraFra;
 import com.bosonit.cabecera.repository.CabeceraFraRepository;
+import com.bosonit.cliente.controller.dto.ClienteInputDto;
 import com.bosonit.cliente.domain.Cliente;
 import com.bosonit.cliente.repository.ClienteRepository;
+import com.bosonit.linea.controller.dto.LineaFraInputDto;
 import com.bosonit.linea.domain.LineaFra;
 import com.bosonit.linea.repository.LineaFraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -34,5 +38,4 @@ public class Run {
 		List<LineaFra> lineasFra = Arrays.asList(lineaFra1, lineaFra2);
 		lineaFraRepository.saveAll(lineasFra);
 	}
-
 }
