@@ -1,14 +1,14 @@
-package com.bosonit.student.controller;
+package com.bosonit.persona.controller;
 
 import com.bosonit.exceptions.CustomError;
+import com.bosonit.exceptions.CustomErrorOutputDto;
 import com.bosonit.exceptions.EntityNotFoundException;
 import com.bosonit.exceptions.UnprocessableEntityException;
-import com.bosonit.exceptions.CustomErrorOutputDto;
-import com.bosonit.student.application.StudentService;
-import com.bosonit.student.controller.dto.input.StudentInputDto;
-import com.bosonit.student.controller.dto.output.StudentOutputDto;
-import com.bosonit.student.controller.dto.output.StudentSimpleOutputDto;
-import com.bosonit.student.domain.StudentEntity;
+import com.bosonit.feign.Feign;
+import com.bosonit.persona.application.PersonService;
+import com.bosonit.persona.controller.dto.input.PersonInputDto;
+import com.bosonit.persona.controller.dto.output.PersonOutputDto;
+import com.bosonit.professor.controller.dto.output.ProfessorOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,28 +17,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/person")
+public class PersonController {
     @Autowired
-    StudentService studentService;
+    PersonService personService;
+    @Autowired
+    Feign feign;
     @PostMapping
-    public StudentOutputDto añadirEstudiante(@RequestBody StudentInputDto studentInputDto) throws Exception {
-        return studentService.añadirEstudiante(studentInputDto);
+    public PersonOutputDto añadirPersona(@RequestBody PersonInputDto personaInputDto) throws Exception {
+        return personService.añadirPersona(personaInputDto);
+    }
+    @GetMapping("/{usuario}")
+    public PersonOutputDto obtenerPersonaPorNombre(@PathVariable String usuario){
+        return personService.obtenerPersonaPorUsuario(usuario);
     }
     @GetMapping("/get/{id}")
-    public StudentSimpleOutputDto obtenerEstudiantePorId(@PathVariable Integer id, @RequestParam(name = "outputType") String outputType) throws EntityNotFoundException {
-        if (outputType.equalsIgnoreCase("simple")){
-            return studentService.obtenerEstudianteSimplePorId(id, outputType);
-        }else
-            return studentService.obtenerEstudianteFullPorId(id, outputType);
+    public PersonOutputDto obtenerPersonaPorId(@PathVariable Integer id) throws EntityNotFoundException {
+        return personService.obtenerPersonaPorId(id);
     }
     @GetMapping
-    public List<StudentOutputDto> obtenerListaEstudiantes(){
-        return studentService.obtenerEstudiantes();
+    public List<PersonOutputDto> obtenerListaPersonas(){
+        return personService.obtenerPersonas();
     }
+
     @DeleteMapping("/del/{id}")
-    public void borrarEstudiante(@PathVariable Integer id) throws Exception {
-        studentService.borrarEstudiante(id);
+    public void borrarPersona(@PathVariable Integer id) throws Exception {
+        personService.borrarPersona(id);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
@@ -56,5 +60,11 @@ public class StudentController {
         customError.setMensaje(e.getMessage());
 
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(customError.customErrorToCustomErrorOutputDto());
+    }
+
+    @GetMapping("/feign/{id}")
+    ResponseEntity<ProfessorOutputDto> getProfessorFeign( @PathVariable int id) {
+        ResponseEntity<ProfessorOutputDto> prid = feign.callServer(id);
+        return  prid;
     }
 }

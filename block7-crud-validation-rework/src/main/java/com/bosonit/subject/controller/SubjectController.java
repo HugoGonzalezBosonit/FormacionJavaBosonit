@@ -30,7 +30,7 @@ public class SubjectController {
         subjectService.añadirAsignaturaAEstudiante(idAsignatura,idEstudiante);
         return null;
     }
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public SubjectOutputDto obtenerAsignaturaPorId(@PathVariable Integer id) throws EntityNotFoundException {
         return subjectService.obtenerAsignaturaPorId(id);
     }
@@ -38,7 +38,7 @@ public class SubjectController {
     public List<SubjectOutputDto> obtenerListaAsignaturas(){
         return subjectService.obtenerAsignaturas();
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/del/{id}")
     public void borrarAsignatura(@PathVariable Integer id) throws Exception {
         subjectService.borrarAsignatura(id);
     }

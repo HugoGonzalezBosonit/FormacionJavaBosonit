@@ -24,7 +24,7 @@ public class ProfessorController {
     public ProfessorOutputDto añadirProfesor(@RequestBody ProfessorInputDto professorInputDto) throws Exception {
         return professorService.añadirProfesor(professorInputDto);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ProfessorOutputDto obtenerProfesorPorId(@PathVariable Integer id) throws EntityNotFoundException {
         return professorService.obtenerProfesorPorId(id);
     }
@@ -32,7 +32,7 @@ public class ProfessorController {
     public List<ProfessorOutputDto> obtenerListaProfesores(){
         return professorService.obtenerProfesores();
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/del/{id}")
     public void borrarProfesor(@PathVariable Integer id) throws Exception {
         professorService.borrarProfesor(id);
     }

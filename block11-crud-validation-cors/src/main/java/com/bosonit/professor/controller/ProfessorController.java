@@ -1,14 +1,12 @@
-package com.bosonit.student.controller;
+package com.bosonit.professor.controller;
 
 import com.bosonit.exceptions.CustomError;
 import com.bosonit.exceptions.EntityNotFoundException;
 import com.bosonit.exceptions.UnprocessableEntityException;
 import com.bosonit.exceptions.CustomErrorOutputDto;
-import com.bosonit.student.application.StudentService;
-import com.bosonit.student.controller.dto.input.StudentInputDto;
-import com.bosonit.student.controller.dto.output.StudentOutputDto;
-import com.bosonit.student.controller.dto.output.StudentSimpleOutputDto;
-import com.bosonit.student.domain.StudentEntity;
+import com.bosonit.professor.aplication.ProfessorService;
+import com.bosonit.professor.controller.dto.input.ProfessorInputDto;
+import com.bosonit.professor.controller.dto.output.ProfessorOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,28 +15,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/professor")
+public class ProfessorController {
     @Autowired
-    StudentService studentService;
+    ProfessorService professorService;
     @PostMapping
-    public StudentOutputDto añadirEstudiante(@RequestBody StudentInputDto studentInputDto) throws Exception {
-        return studentService.añadirEstudiante(studentInputDto);
+    public ProfessorOutputDto añadirProfesor(@RequestBody ProfessorInputDto professorInputDto) throws Exception {
+        return professorService.añadirProfesor(professorInputDto);
     }
     @GetMapping("/get/{id}")
-    public StudentSimpleOutputDto obtenerEstudiantePorId(@PathVariable Integer id, @RequestParam(name = "outputType") String outputType) throws EntityNotFoundException {
-        if (outputType.equalsIgnoreCase("simple")){
-            return studentService.obtenerEstudianteSimplePorId(id, outputType);
-        }else
-            return studentService.obtenerEstudianteFullPorId(id, outputType);
+    public ProfessorOutputDto obtenerProfesorPorId(@PathVariable Integer id) throws EntityNotFoundException {
+        return professorService.obtenerProfesorPorId(id);
     }
     @GetMapping
-    public List<StudentOutputDto> obtenerListaEstudiantes(){
-        return studentService.obtenerEstudiantes();
+    public List<ProfessorOutputDto> obtenerListaProfesores(){
+        return professorService.obtenerProfesores();
     }
     @DeleteMapping("/del/{id}")
-    public void borrarEstudiante(@PathVariable Integer id) throws Exception {
-        studentService.borrarEstudiante(id);
+    public void borrarProfesor(@PathVariable Integer id) throws Exception {
+        professorService.borrarProfesor(id);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)

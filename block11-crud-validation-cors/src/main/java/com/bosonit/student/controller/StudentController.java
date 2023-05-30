@@ -8,7 +8,6 @@ import com.bosonit.student.application.StudentService;
 import com.bosonit.student.controller.dto.input.StudentInputDto;
 import com.bosonit.student.controller.dto.output.StudentOutputDto;
 import com.bosonit.student.controller.dto.output.StudentSimpleOutputDto;
-import com.bosonit.student.domain.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -27,7 +27,7 @@ public class PersonController {
     public PersonOutputDto obtenerPersonaPorNombre(@PathVariable String usuario){
         return personService.obtenerPersonaPorUsuario(usuario);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public PersonOutputDto obtenerPersonaPorId(@PathVariable Integer id) throws EntityNotFoundException {
         return personService.obtenerPersonaPorId(id);
     }
@@ -36,7 +36,7 @@ public class PersonController {
         return personService.obtenerPersonas();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/del/{id}")
     public void borrarPersona(@PathVariable Integer id) throws Exception {
         personService.borrarPersona(id);
     }
