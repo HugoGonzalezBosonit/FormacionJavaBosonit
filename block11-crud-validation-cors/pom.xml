@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bosonit</groupId>
-	<artifactId>block7-crud-validation</artifactId>
+	<artifactId>block11-crud-validation-cors</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>block7-crud-validation</name>
+	<name>block11-crud-validation-cors</name>
 	<description>Crud con validación sin @Valid</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -69,6 +69,11 @@
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <version>3.1.1</version>
         </dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
 	<build>
